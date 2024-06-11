@@ -1,0 +1,532 @@
+{
+    "langues": [
+        {
+            "langue": "Français",
+            "key": "fr"
+        },
+        {
+            "langue": "English",
+            "key": "en"
+        }
+    ],
+
+    "fr": {
+        "valo": {
+            "stats": [
+                "Victoire/Défaite",
+                "Éliminations",
+                "Morts",
+                "Assistances",
+                "Tir à la tête %",
+                "Agent"
+            ],
+            "statsMoyenne": [
+                "Victoire %",
+                "Moyenne d'éliminations",
+                "Moyenne de morts",
+                "Moyenne d'assistances",
+                "Moyenne de tir à la tête %",
+                "Agent le plus joué"
+            ],
+            "description": "Valorant est un jeu vidéo free-to-play de tir à la première personne en multijoueur développé et édité par Riot Games. Dans le mode de jeu principal, deux équipes de cinq joueurs s'affrontent et les agents utilisent un système économique pour acheter des utilitaires et des armes. Une équipe est en attaque et une est en défense."
+        },
+
+        "lol": {
+            "stats": [
+                "Victoire/Défaite",
+                "Éliminations",
+                "Morts",
+                "Assistances",
+                "Participation aux éliminations %",
+                "Champion"
+            ],
+            "statsMoyenne": [
+                "Victoire %",
+                "Moyenne d'éliminations",
+                "Moyenne de morts",
+                "Moyenne d'assistances",
+                "Moyenne de participation %",
+                "Champion le plus joué"
+            ],
+            "description": "League of Legends (abrégé LoL) est un jeu vidéo sorti en 2009 de type arène de bataille en ligne, free-to-play, développé et édité par Riot Games sur Windows et Mac OS. Le mode principal du jeu voit s'affronter deux équipes de 5 joueurs en temps réel dans des parties d'une durée d'environ une demi-heure, chaque équipe occupant et défendant sa propre base sur la carte."
+
+        },
+
+        "rl": {
+            "stats": [
+                "Victoire/Défaite",
+                "Buts/Tirs %",
+                "Buts",
+                "Tirs",
+                "Assistances",
+                "Arrêts"
+            ],
+            "statsMoyenne": [
+                "Victoire %",
+                "Moyenne des Buts/Tirs %",
+                "Moyenne des buts",
+                "Moyenne des tirs",
+                "Moyenne des assistances",
+                "Moyenne des arrêts"
+            ],
+            "description": "Rocket League est un jeu vidéo développé et édité par Psyonix. Rocket League est un mélange de jeux de courses et de jeux de football. Par équipe ou en solo, le joueur contrôle un véhicule et peut alors frapper dans un ballon, avec pour objectif de marquer dans le but adverse."
+        },
+
+        "victoire": "Victoire/Défaite",
+        "saison": "Saison",
+        "division": "Division",
+        "jeu": "Jeu",
+        "equipe": "Équipe",
+        "prenom": "Prénom",
+        "nom": "Nom",
+        "pseudo": "Pseudo",
+        "position": "Position",
+        "date_naissance": "Date de naissance",
+        "erreur": "erreur",
+        "date_format": "fr-FR",
+        "score": "Score",
+        "date": "Date",
+        "match": "Match",
+        "vote": "Vote",
+        "resultat": "Résultat",
+
+        "ajoutEquipe": {
+            "h2": "Créer une équipe",
+            "nom_equipe": "Nom de l'équipe",
+            "creer": "Créer l'équipe"
+        },
+
+        "ajoutJoueur": {
+            "h2": "Créer un joueur",
+            "nom_equipe": "Nom de l'équipe",
+            "creer": "Créer le joueur"
+        },
+
+        "ajoutMatch": {
+            "h2": "Créer un match",
+            "e1": "Équipe 1",
+            "e2": "Équipe 2",
+            "s1": "Score équipe 1",
+            "s2": "Score équipe 2",
+            "date_heure": "Date et heure du match",
+            "creer": "Créer le match"
+        },
+
+        "ajoutModifEquipe": {
+            "ajout": "Ajouter une équipe",
+            "modif": "Modifier une équipe"
+        },
+
+        "ajoutModifJoueur": {
+            "ajout": "Ajouter un joueur",
+            "modif": "Modifier un joueur"
+        },
+
+        "ajoutModifMatch": {
+            "ajout": "Ajouter un match",
+            "modif": "Modifier un match"
+        },
+
+        "ajoutPartie": {
+            "succes": "La partie a été créé avec succès",
+            "ajout": "Ajouter une partie",
+            "match": "Recherche de match",
+            "saison_match": "Saison du match",
+            "jeu_match": "Jeu du match",
+            "equipe_match": "Équipe du match",
+            "match_equipe": "Matchs de l'équipe",
+            "creer": "Créer une partie",
+            "confirm": "Ajouter la partie"
+        },
+
+        "auth": {
+            "connecter": "SE CONNECTER",
+            "email": "Adresse mail",
+            "mdp": "Mot de passe",
+            "connexion": "CONNEXION",
+            "connexion_inscription": "S'inscrire ?",
+            "inscrire": "CRÉER UN COMPTE",
+            "inscription": "INSCRIPTION",
+            "inscription_connexion": "Se connecter?"
+        },
+
+        "equipes": {
+            "nos": "NOS ÉQUIPES",
+            "notre": "NOTRE ÉQUIPE"
+        },
+
+        "joueurs": {
+            "h1": "JOUEURS",
+            "aucun": "Aucun joueur à afficher.",
+            "jeux": "Tous les jeux",
+            "recherche": "Recherchez un joueur",
+            "aucune": "Aucune statistique à afficher pour le moment.",
+            "moyenne": "MOYENNE"
+        },
+
+        "matchs": {
+            "h1": "MATCHS",
+            "e1": "Équipe 1",
+            "e2": "Équipe 2",
+            "aucun": "Aucun match à afficher.",
+            "jeux": "Tous les jeux",
+            "equipes": "Toutes les équipes"
+        },
+
+        "match_semaine": {
+            "h1": "Les résultats de la semaine",
+            "aucun": "Aucun match cette semaine"
+        },
+
+        "modif_equipes": {
+            "h2": "Modifier une équipe",
+            "recherche": "Recherche d'équipe",
+            "saison": "Saison de l'équipe",
+            "jeu": "Jeu de l'équipe",
+            "equipe": "Équipe désirée",
+            "choix": "Équipe choisie",
+            "equipe_h2": "Changer au moins une valeur. Si une case n'est pas changée, la valeur de base sera choisie.",
+            "id": "Id",
+            "modif": "Modifier l'équipe"
+        },
+
+        "modif_joueurs": {
+            "h2": "Modifier un joueur",
+            "recherche": "Recherche de joueur",
+            "saison": "Saison du joueur",
+            "jeu": "Jeu du joueur",
+            "equipe": "Équipe du joueur",
+            "pseudo": "Pseudo du joueur",
+            "choix": "Joueur choisi",
+            "joueur_h2": "Changer au moins une valeur. Si une case n'est pas changée, la valeur de base sera choisie.",
+            "id": "Id",
+            "modif": "Modifier le joueur"
+        },
+
+        "modif_matchs": {
+            "h2": "Modifier un match",
+            "recherche": "Recherche de match",
+            "saison": "Saison du match",
+            "jeu": "Jeu du match",
+            "equipe": "Équipe du match",
+            "matchs": "Matchs de l'équipe",
+            "choix": "Match choisi",
+            "match_h2": "Changer au moins une valeur. Si une case n'est pas changée, la valeur de base sera choisie.",
+            "id": "Id",
+            "equipe1": "Équipe 1",
+            "equipe2": "Équipe2",
+            "score1": "Score équipe 1",
+            "score2": "Score équipe 2",
+            "date_heure": "Date et heure du match",
+            "jouer": "Jouer ?",
+            "oui": "oui",
+            "non": "non",
+            "modif": "Modifier l'équipe"
+        },
+
+        "navbar": {
+            "joueurs": "JOUEURS",
+            "matchs": "MATCHS",
+            "equipes": "ÉQUIPES",
+            "predictions": "PRÉDICTIONS",
+            "equipe": "AJOUTER/MODIFIER UNE ÉQUIPE",
+            "joueur": "AJOUTER/MODIFIER UN JOUEUR",
+            "match": "AJOUTER/MODIFIER UN MATCH",
+            "partie": "AJOUTER UNE PARTIE",
+            "admin": "ADMINISTRATION"
+        },
+
+        "predictions": {
+            "msg_erreur": "Nous n'avons pas pu traiter votre demande.",
+            "h1": "Prédictions",
+            "h2": "Faire une prédiction",
+            "jeux": "Tous les jeux",
+            "matchs": "Tous les matchs",
+            "description": "Quelle équipe gagnera le match ?",
+            "ex": "(ex. gagnant > perdant)",
+            "envoyer": "ENVOYER",
+            "vos": "Vos prédictions",
+            "complete": "Prédictions complétées",
+            "attente": "Prédictions en attente",
+            "aucune": "Aucune prédiction pour l'instant"
+        },
+
+        "profil": {
+            "h1": "Profil",
+            "modif": "Modifier le compte",
+            "actuel": "Mot de passe actuel",
+            "nouveau": "Nouveau mot de passe",
+            "annuler": "Annuler les modifications",
+            "save": "Sauvegarder",
+            "deconnexion": "DÉCONNEXION"
+        },
+        
+        "valid": {
+            "requis": "Ce champ est requis.",
+            "mdp": "Cette valeur ne doit pas être inférieur à 8 caractères, contenant au moins 1 chiffre.",
+            "nom": "Vous ne pouvez entrer que des lettres.",
+            "pseudo": "Votre pseudo doit avoir un minimum de 3 caractères.",
+            "pseudo2": "Votre pseudo ne peut contenir que des lettres ou des chiffres."
+        }
+        
+    },
+
+    "en": {
+        "valo": {
+            "stats": [
+                "Win/Lose",
+                "Kills",
+                "Deaths",
+                "Assists",
+                "Headshot %",
+                "Agent"
+            ],
+            "statsMoyenne": [
+                "Win %",
+                "Average kills",
+                "Average deaths",
+                "Average assists",
+                "Average headshot %",
+                "Most played agent"
+            ],
+            "description": "Valorant is a free-to-play first-person tactical hero shooter developed and published by Riot Games. In the main game mode, players are assigned to either the attacking or defending team with each team having five players on it."
+        },
+
+        "lol": {
+            "stats": [
+                "Win/Lose",
+                "Kills",
+                "Deaths",
+                "Assists",
+                "Kill participation %",
+                "Champion"
+            ],
+            "statsMoyenne": [
+                "Win %",
+                "Average kills",
+                "Average deaths",
+                "Average assists",
+                "Average kill participation %",
+                "Most played champion"
+            ],
+            "description": "League of Legends (LoL), is a 2009 multiplayer online battle arena video game developed and published by Riot Games. In the game, two teams of five players battle in player-versus-player combat, each team occupying and defending their half of the map."
+        },
+
+        "rl": {
+            "stats": [
+                "Win/Lose",
+                "Goals/Shots %",
+                "Goals",
+                "Shots",
+                "Assists",
+                "Saves"
+            ],
+            "statsMoyenne": [
+                "Win %",
+                "Average goals/shots %",
+                "Average goals",
+                "Average shots",
+                "Average assists",
+                "Average saves"
+            ],
+            "description": "Rocket League is a vehicular soccer video game developed and published by Psyonix. Rocket League is a mix between a racing and a football game. Rocket League has up to eight players assigned to each of the two teams, using rocket-powered vehicles to hit a ball into their opponent's goal and score points over the course of a match."
+        },
+
+        "victoire": "Win/Lose",
+        "saison": "Season",
+        "division": "Division",
+        "jeu": "Game",
+        "equipe": "Team",
+        "prenom": "First name",
+        "nom": "Last name",
+        "pseudo": "Username",
+        "position": "Role",
+        "date_naissance": "Birth date",
+        "erreur": "error",
+        "date_format": "en-US",
+        "score": "Score",
+        "date": "Date",
+        "match": "Game",
+        "vote": "Bet",
+        "resultat": "Result",
+
+        "ajoutEquipe": {
+            "h2": "Create a team",
+            "nom_equipe": "Team name"
+        },
+
+        "ajoutJoueur": {
+            "h2": "Create a player",
+            "nom_equipe": "Team name",
+            "creer": "Create the player"
+        },
+
+        "ajoutMatch": {
+            "h2": "Create a match",
+            "e1": "Team 1",
+            "e2": "Team 2",
+            "s1": "Score team 1",
+            "s2": "Score team 2",
+            "date_heure": "Date and time of the match",
+            "creer": "Create the match"
+        },
+
+        "ajoutModifEquipe": {
+            "ajout": "Create a team",
+            "modif": "Modify a team",
+            "creer": "Create the team"
+        },
+
+        "ajoutModifJoueur": {
+            "ajout": "Create a player",
+            "modif": "Modify a player"
+        },
+
+        "ajoutModifMatch": {
+            "ajout": "Create a match",
+            "modif": "Modify a match"
+        },
+
+        "ajoutPartie": {
+            "succes": "The game was created succesfully",
+            "ajout": "Create a game",
+            "match": "Search a match",
+            "saison_match": "Match's season",
+            "jeu_match": "Match's game",
+            "equipe_match": "Match's team",
+            "match_equipe": "Team's matches",
+            "creer": "Create a game",
+            "confirm": "Create the game"
+        },
+
+        "auth": {
+            "connecter": "LOGIN",
+            "email": "Email",
+            "mdp": "Password",
+            "connexion": "LOGIN",
+            "connexion_inscription": "Sign in ?",
+            "inscrire": "CREATE AN ACCOUNT",
+            "inscription": "REGISTER",
+            "inscription_connexion": "Login ?"
+        },
+
+        "equipes": {
+            "nos": "OUR TEAMS",
+            "notre": "OUR TEAM"
+        },
+
+        "joueurs": {
+            "h1": "PLAYERS",
+            "aucun": "No player to display.",
+            "jeux": "All games",
+            "recherche": "Search a player",
+            "aucune": "There is not stats to display for the moment.",
+            "moyenne": "AVERAGE"
+        },
+
+        "matchs": {
+            "h1": "MATCHES",
+            "e1": "Team 1",
+            "e2": "Team 2",
+            "aucun": "No match to display.",
+            "jeux": "All games",
+            "equipes": "All teams"
+        },
+
+        "match_semaine": {
+            "h1": "This week's results",
+            "aucun": "No match this week."
+        },
+
+        "modif_equipes": {
+            "h2": "Modify a team",
+            "recherche": "Team search",
+            "saison": "Team's season",
+            "jeu": "Team's game",
+            "equipe": "Desired team",
+            "choix": "Chosen team",
+            "equipe_h2": "Change at least one value. If a box is not changed, the default value will be chosen.",
+            "id": "Id",
+            "modif": "Modify the team"
+        },
+
+        "modif_joueurs": {
+            "h2": "Modify a player",
+            "recherche": "Player search",
+            "saison": "Player's season",
+            "jeu": "Player's game",
+            "equipe": "Player's team",
+            "pseudo": "Username",
+            "choix": "Chosen player",
+            "joueur_h2": "Change at least one value. If a box is not changed, the default value will be chosen.",
+            "id": "Id",
+            "modif": "Modify the player"
+        },
+
+        "modif_matchs": {
+            "h2": "Modify a match",
+            "recherche": "Match search",
+            "saison": "Match's season",
+            "jeu": "Match's game",
+            "equipe": "Match's team",
+            "matchs": "Team's matches",
+            "choix": "Chosen match",
+            "match_h2": "Change at least one value. If a box is not changed, the default value will be chosen.",
+            "id": "Id",
+            "equipe1": "Team 1",
+            "equipe2": "Team 2",
+            "score1": "Score team 1",
+            "score2": "Score team 2",
+            "date_heure": "Date and time of the match",
+            "jouer": "Played ?",
+            "oui": "yes",
+            "non": "no",
+            "modif": "Modify the team"
+        },
+
+        "navbar": {
+            "joueurs": "PLAYERS",
+            "matchs": "MATCHES",
+            "equipes": "TEAMS",
+            "predictions": "BETS",
+            "equipe": "CREATE/MODIFY A TEAM",
+            "joueur": "CREATE/MODIFY A PLAYER",
+            "match": "CREATE/MODIFY A MATCH",
+            "partie": "CREATE A GAME",
+            "admin": "ADMIN"
+        },
+
+        "predictions": {
+            "msg_erreur": "We were not able to process your request.",
+            "h1": "Bets",
+            "h2": "Make a bet",
+            "jeux": "All games",
+            "matchs": "All matches",
+            "description": "Which team will win ?",
+            "ex": "(ex. winner > loser)",
+            "envoyer": "SEND",
+            "vos": "Your bets",
+            "complete": "Bets completed",
+            "attente": "Pending bets",
+            "aucune": "No bet at the moment"
+        },
+
+        "profil": {
+            "h1": "Profile",
+            "modif": "Modify your account",
+            "actuel": "Current password",
+            "nouveau": "New password",
+            "annuler": "Discard changes",
+            "save": "Save",
+            "deconnexion": "DISCONNECT"
+        },
+        
+        "valid": {
+            "requis": "This field is required.",
+            "mdp": "This value must be at least 8 characters long and contain at least 1 digit.",
+            "nom": "You can only enter letters.",
+            "pseudo": "Your username must be at least 3 characters long.",
+            "pseudo2": "Your username can only contain letters and digits."
+        }
+    }
+}

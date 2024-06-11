@@ -1,0 +1,164 @@
+body {
+    background: #181818;
+}
+
+.titre {
+    margin-top: 10rem;
+    color: #f5f5f5;
+    margin-bottom: 2rem;
+}
+
+.loadingAuth {
+    background-color: inherit;
+    margin: 1rem 0 1rem 0;
+}
+
+.container {
+    width: 1000px;
+    height: auto;
+    background-color: #101010;
+    border-radius: 25px;
+    margin-bottom: 5rem;
+}
+
+label {
+    color: #f5f5f5;
+}
+
+.row {
+    height: 100%;
+}
+
+.col {
+    padding: 0;
+    margin: 0;
+}
+
+.colImage {
+    border-radius: 25px 0 0 25px;
+    background-color: #f5f5f5;
+    background-image: url('../images/background2.jpg');
+    background-position-x: right;
+    background-position-y: center;
+    background-size: cover;
+    margin: 1px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 1);
+}
+
+.colInput {
+    margin-bottom: 5rem;
+}
+
+.image {
+    width: 80%;
+    height: auto;
+}
+
+.inputContainer {
+    position: relative;
+}
+
+.customInput {
+    width: 80%;
+    display: inline-block;
+    margin: 1rem;
+    border: 1px solid #f5f5f5;
+    background-color: #101010;
+    color: #f5f5f5;
+    outline: none;
+}
+
+.customInput:focus {
+    border-color: #f5f5f5;
+    background-color: #101010;
+    color: #f5f5f5;
+    box-shadow: none;
+}
+
+.inputHolder {
+    color: #f5f5f5;
+    position: absolute;
+    pointer-events: none;
+    left: 11.5%;
+    top: 1.45rem;
+    transition: 0.2s ease-in-out;
+    padding: 0px 3px 0px 3px;
+    background-color: #101010;
+}
+
+.customInput:focus ~ .inputHolder, .customInput:valid ~ .inputHolder {
+    top: 0.15rem;
+    font-size: small;
+}
+
+.ripple {
+    width: 80%;
+    height: 3rem;
+    margin: 1rem;
+}
+
+.info {
+    display:block;
+}
+
+.lien {
+    display: block;
+    color: #f5f5f5;
+}
+
+.customButton {
+    background-color: #d3333e;
+    border-color: #d3333e;
+    color: #f5f5f5;
+    width: 100%;
+}
+
+.customButton:hover,
+.customButton:active:focus,
+.customButton:disabled {
+    background-color: #7a1d24;
+    border-color: #7a1d24;
+}
+
+@media screen and (max-width: 990px) {
+    .inputHolder {
+        left: 12%;
+    }
+
+    .colInput {
+        margin-bottom: 3rem;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .container {
+        width: 500px;
+    }
+
+    .colImage {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .inputHolder {
+        left: 12%;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .container {
+        width: auto;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .colInput {
+        margin-bottom: 3rem;
+    }
+}
+
+
+

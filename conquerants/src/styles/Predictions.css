@@ -1,0 +1,239 @@
+.nouvellePrediction {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #121212;
+    border: 2px solid #161616;
+    border-radius: 15px;
+    width: 90%;
+}
+
+.predictions {
+    margin-top: 6rem;
+    padding: 1rem;
+    background-color: #121212;
+    border: 2px solid #161616;
+    width: 90%;
+    border-radius: 15px;
+    margin-bottom: 5rem;
+}
+
+.predictions h2 {
+    margin-top: 2rem;
+}
+
+.selectionPrediction {
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectionPrediction select {
+    height: 40px;
+    background-color: #121212;
+    border: 2px solid #161616;
+    border-radius: 10px;
+    padding-left: 8px;
+    margin-right: 10px;
+    color: #b5b5b5;
+    width: 50%;
+}
+
+.selectionSaison {
+    height: 40px;
+    background-color: #121212;
+    border: 2px solid #161616;
+    border-radius: 10px;
+    color: #b5b5b5;
+}
+
+.predictionInfo {
+    background-color: #121212;
+    border-radius: 15px;
+    border: 2px solid #d3333e;
+    margin: 2rem 1rem 1rem 1rem;
+    padding: 1rem;
+}
+
+.prediction {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.votePrediction {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 1rem;
+    color: #f5f5f5;
+    font-size: 1.5rem;
+    background-color: #121212;
+    border-color: #f5f5f5;
+    margin: 0 1rem 1rem 1rem;
+}
+
+.nomEquipePrediction {
+    margin-top: 0.5rem;
+    width: 120px;
+    height: 30px;
+    font-weight: 500;
+}
+
+.predictionDescription {
+    color: #c0c0c0;
+    font-size: 12px;
+}
+
+.predictionExemple {
+    display: block;
+}
+
+.nomEquipePrediction:first-child {
+    text-align: end;
+}
+
+.nomEquipePrediction:last-child {
+    text-align: start;
+}
+
+.buttonPrediction {
+    background-color: #d3333e;
+    border-color: #d3333e;
+    color: #f5f5f5;
+    width: 10rem;
+}
+
+.buttonPrediction:hover,
+.buttonPrediction:active:focus,
+.buttonPrediction:disabled {
+    background-color: #7a1d24;
+    border-color: #7a1d24;
+}
+
+.predictionsContainer {
+    border: 2px solid #d3333e;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.tableauPredictions {
+    margin: 0;
+    margin-top : 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.tableauPredictions thead th {
+    background-color: #121212;
+    color: #f5f5f5;
+    padding: 1rem;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    
+}
+
+.tableauPredictions tbody td {
+    color: #f5f5f5;
+    background-color: transparent;
+    height: 5rem;
+}
+
+.tableauPredictions tbody tr:nth-of-type(odd) {
+    background-color: #141414;
+}
+
+.tableauPredictions tbody tr:nth-of-type(even) {
+    background-color: #181818;
+}
+
+
+.tableauPredictions tbody tr:hover {
+    background-color: rgba(211, 51, 62, 0.4);
+}
+
+.tableauPredictions tr {
+    user-select: none;
+    vertical-align: middle;
+}
+
+.tableauPredictions tr {
+    border-radius: 15px;
+    border: 2px solid #181818;
+    background-color: #171717;
+}
+
+.win {
+    color: #00cc00!important;
+    font-size: large;
+}
+
+.lose {
+    color: red!important;
+    font-size: large;
+}
+
+@media screen and (max-width: 550px) {
+    .predictions,
+    .nouvellePrediction {
+        width: 100%;
+    }
+
+    .predictionsContainer {
+        padding: 1rem 0 1rem 0;
+    }
+
+    .tableauPredictions thead th {
+        font-size: 1.25rem;
+    }
+
+    .tableauPredictions tbody td {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .selectionPrediction {
+        display: inline-block;
+    }
+
+    .selectionPrediction select {
+        width: 100%;
+    }
+
+    .selectionPrediction select:first-child {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .tableauPredictions thead th {
+        font-size: 0.8rem;
+    }
+
+    .tableauPredictions tbody td {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .tableauPredictions thead th {
+        font-size: 0.7rem;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+    }
+
+    select {
+        font-size: 0.8rem;
+    }
+
+    .tableauPredictions tbody td {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,124 @@
+.joueurContent {
+    color: #f5f5f5;
+}
+
+.profilJoueur {
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-left: 10%;
+    padding: 0;
+    border: 1px solid #101010;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.imageJoueur {
+    width: auto;
+    height: 100%;
+    display: block;
+}
+
+.joueurInfo {
+    display: flex;
+    width: 100%;
+    padding: 2rem;
+    background-color: rgba(211, 51, 62, 0.3);
+}
+
+.joueurText {
+    margin-left: 3rem;
+    margin-top: 0.5rem;
+    text-align: left;
+}
+
+.joueurP {
+    margin: 0.25rem;
+    margin-left: 0;
+}
+
+.joueurStats {
+    margin-bottom: 0;
+}
+
+.joueurStats th {
+    background-color: #121212;
+    color: #f5f5f5;
+    min-width: 6rem;
+    height: 4rem;
+    vertical-align: middle;
+}
+
+.joueurStats td {
+    background-color: #f5f5f5;
+    font-weight: 500;
+}
+
+.fillJoueur {
+    height: 5rem;
+    padding: 0;
+    margin: 5rem 10% 0 10%;
+    vertical-align: middle;
+}
+
+#fillTable {
+    border-radius: 15px;
+    margin: 0;
+}
+
+#fillTable th {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 850px) {
+    .fillJoueur {
+        margin: 5rem 5% 0 5%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .fillJoueur {
+        margin: 5rem 0 0 0;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    #fillTable th {
+        font-size: 0.8rem;
+    }
+
+    #fillTable td {
+        font-size: 0.8rem;
+    }
+
+    .joueurStats th {
+        font-size: 0.8rem;
+    }
+
+    .joueurStats td {
+        font-size: 0.8rem;
+    }
+}
+ 
+@media screen and (max-width: 425px) {
+    .profilJoueur {
+        width: 120px;
+        height: 120px;
+        margin-left: 0;
+    }
+
+    .pseudoJoueur {
+        font-size: 1.5rem;
+    }
+
+    .joueurText {
+        margin-left: 2rem;
+    }
+
+    .joueurP {
+        margin: 0;
+    }
+}
+

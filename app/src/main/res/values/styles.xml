@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name = "toolbarLogo" >
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="srcCompat">@drawable/logo</item>
-    </style>
-</resources>

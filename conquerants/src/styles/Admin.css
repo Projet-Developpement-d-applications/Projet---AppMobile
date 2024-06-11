@@ -1,0 +1,14 @@
+.registration, .login, .ajoutEquipe, .ajoutJoueurs, .ajoutMatchs, .modifEquipe, .modifJoueur, .modifMatch, .modifMatch, .ajoutPartie, .profil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.erreur{
+    color: red;
+}
+
+.succes{
+    color: green;
+}
