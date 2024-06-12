@@ -18,6 +18,7 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import Settings from '../screens/Settings';
 import { useLangue } from '../Context/LangueContext';
 import { useAuth } from '../Context/AuthContext';
+import Connexion from '../screens/Connexion';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -49,7 +50,7 @@ export default function App() {
         drawerContent={props => <CustomDrawerContent {...props} />}
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#6e171d'
+            backgroundColor: '#d3333e'
           },
           headerTintColor: '#f5f5f5',
           headerTitleAlign: 'center',
@@ -63,7 +64,7 @@ export default function App() {
           drawerInactiveTintColor: '#f5f5f5',
         }}
       >
-          <Drawer.Screen name={langue.navbar.accueil} component={Accueil} initialParams={{langue: langue}} options={{
+          <Drawer.Screen name={langue.navbar.accueil} component={Accueil} options={{
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faHome} size={20} color={color} />
           )}}/>
@@ -89,7 +90,7 @@ export default function App() {
           )}}/>
           {connecter ? 
           <>
-            <Drawer.Screen name={langue.navbar.predictions} component={DashboardScreen} initialParams={{langue: langue}} options={{
+            <Drawer.Screen name={langue.navbar.predictions} component={DashboardScreen} options={{
               drawerIcon: ({ color }) => (
                 <FontAwesomeIcon icon={faDice} size={20} color={color} />
             )}}/>
@@ -99,11 +100,15 @@ export default function App() {
             )}}/>
           </> :
           <>
-            <Drawer.Screen name={langue.navbar.connexion} component={DashboardScreen} options={{
+            <Drawer.Screen name={langue.navbar.connexion} component={Connexion} options={{
               drawerIcon: ({ color }) => (
                 <FontAwesomeIcon icon={faUser} size={20} color={color} />
             )}}/>
-            <Drawer.Screen name={langue.navbar.settings} component={Settings} initialParams={{langue: langue}} options={{
+            <Drawer.Screen name={langue.navbar.inscription} component={DashboardScreen} options={{
+              drawerIcon: ({ color }) => (
+                <FontAwesomeIcon icon={faUser} size={20} color={color} />
+            )}}/>
+            <Drawer.Screen name={langue.navbar.settings} component={Settings} options={{
               drawerIcon: ({ color }) => (
                 <FontAwesomeIcon icon={faGear} size={20} color={color} />
             )}}/>

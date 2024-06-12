@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 import Loading from '../components/Loading';
 import { useLangue } from '../Context/LangueContext';
+import { encrypt } from '../components/Encryption';
 
 const AuthContext = createContext();
 
@@ -56,7 +57,8 @@ export const AuthProvider = ({ children }) => {
     }
     
     const refreshConnexion = async () => {
-        await Axios.get("https://conquerants.azurewebsites.net/refreshConnexion", 
+      console.log("refresh");
+        await Axios.get("https://conquerants.azurewebsites.net/refreshConnexion",
           { withCredentials: true }
         ).then((response) => {
           if (response.data) {

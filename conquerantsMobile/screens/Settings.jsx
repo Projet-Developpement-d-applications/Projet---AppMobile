@@ -31,7 +31,8 @@ const Settings = () => {
             setLoading(true);
 
             try {
-                const response = await Axios.get('https://conquerants.azurewebsites.net/utilisateurInfo', { withCredentials: true });
+                const response = await Axios.get('https://conquerants.azurewebsites.net/utilisateurInfo',
+                { withCredentials: true });
                 if (response.data) {
                     setUtilisateur(response.data);
                     setPrenom(response.data.prenom);

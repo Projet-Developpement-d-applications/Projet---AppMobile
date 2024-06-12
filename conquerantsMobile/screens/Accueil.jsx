@@ -6,10 +6,11 @@ import Loading from '../components/Loading';
 import MatchCarousel from '../components/MatchCarousel';
 import MatchSemaine from '../components/MatchSemaine';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useLangue } from '../Context/LangueContext';
 
-function Accueil({ route }) {
+function Accueil() {
 
-    const { langue } = route.params;
+    const { langue } = useLangue();
     const [matchsSemaine, setMatchsSemaine] = useState([]);
     const [matchsAVenir, setMatchsAVenir] = useState([]);
     const [jeux, setJeux] = useState([]);

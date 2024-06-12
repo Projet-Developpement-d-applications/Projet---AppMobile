@@ -236,7 +236,8 @@
             "lol": "LEAGUE OF LEGENDS",
             "rl": "ROCKET LEAGUE",
             "connexion": "CONNEXION",
-            "settings": "PARAMÈTRES"
+            "settings": "PARAMÈTRES",
+            "inscription": "INSCRIPTION"
         },
 
         "predictions": {
@@ -499,7 +500,8 @@
             "lol": "LEAGUE OF LEGENDS",
             "rl": "ROCKET LEAGUE",
             "connexion": "LOGIN",
-            "settings": "SETTINGS"
+            "settings": "SETTINGS",
+            "inscription": "REGISTER"
         },
 
         "predictions": {

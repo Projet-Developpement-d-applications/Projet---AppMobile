@@ -8,7 +8,7 @@ const App = () => {
   return (
     <LangueProvider>
     <AuthProvider>
-      <StatusBar backgroundColor='#6e171d' barStyle='light-content'/>
+      <StatusBar backgroundColor='#d3333e' barStyle='light-content'/>
       <AppScreen />
     </AuthProvider>
     </LangueProvider>
