@@ -6,7 +6,7 @@ import { useLangue } from '../Context/LangueContext';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const { langue, getCookieLangue } = useLangue();
+    const { getCookieLangue } = useLangue();
     const [connecter, setConnecter] = useState(false);
     const [pendingConnexion, setPendingConnexion] = useState(true);
 
