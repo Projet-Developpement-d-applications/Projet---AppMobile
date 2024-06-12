@@ -17,6 +17,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
 import { faRectangleList } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
+import Loading from './components/Loading';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -29,18 +30,6 @@ export default function App() {
   const [saisons, setSaisons] = useState([]);
   const [pseudoUser, setPseudoUser] = useState("");
   const [pendingConnexion, setPendingConnexion] = useState(true);
-
-  useEffect(() => {
-    // Simulate user authentication after 5 seconds
-    const simulateAuthentication = () => {
-      setTimeout(() => {
-        setConnecter(true);
-      }, 5000); // 5000 milliseconds = 5 seconds
-    };
-  
-    // Call the function to simulate authentication
-    simulateAuthentication();
-  }, []);
 
   const creerCookieLangue = async () => {
     try {
@@ -98,7 +87,7 @@ export default function App() {
     const getCookieLangue = async () => {
       try {
         const langueTemp = await CookieManager.get('http://localhost');
-        if (langueTemp) {
+        if (langueTemp.langue) {
           handleLangue(langueTemp.langue.value);
         }
       } catch (error) {
@@ -142,7 +131,7 @@ export default function App() {
   }
 
   if (pendingConnexion) {
-    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text>Loading...</Text></View>
+    return <Loading />
   }
 
   return (
@@ -160,7 +149,7 @@ export default function App() {
             fontWeight: 'bold',
           },
           drawerStyle: {
-            backgroundColor: '#101010',
+            backgroundColor: '#181818',
           },
           drawerActiveTintColor: '#d3333e',
           drawerInactiveTintColor: '#f5f5f5',

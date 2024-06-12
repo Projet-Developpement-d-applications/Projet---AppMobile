@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { useQuery } from 'react-query';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
+import Loading from '../components/Loading';
+import MatchCarousel from '../components/MatchCarousel';
+import MatchSemaine from '../components/MatchSemaine';
+import { ScrollView } from 'react-native-gesture-handler';
 
-function Accueil({ langue }) {
+function Accueil({ route }) {
 
+    const { langue } = route.params;
     const [matchsSemaine, setMatchsSemaine] = useState([]);
     const [matchsAVenir, setMatchsAVenir] = useState([]);
     const [jeux, setJeux] = useState([]);
@@ -52,7 +57,7 @@ function Accueil({ langue }) {
     });
 
     if (isFetching1 || isFetching2 || isFetching3) {
-        //return <Loading/>
+        return <Loading/>
     }
     
     if (isError1 || isError2 || isError3) {
@@ -60,25 +65,41 @@ function Accueil({ langue }) {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>
-                Accueil
-            </Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.app}>
+            <MatchCarousel langue={langue} matchs={matchsAVenir} />
+            <Image source={require('../images/banniere_blanc.png')} style={styles.backgroundImage}></Image>
+            <View style={styles.content}>
+                <MatchSemaine langue={langue} jeux={jeux} matchs={matchsSemaine} />
+            </View>
         </View>
+        </ScrollView>
     );
 }
 
 export default Accueil;
 
 const styles = StyleSheet.create({
-    container: {
+    app: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#121212",
+        backgroundColor: "#101010",
     },
-
+    content: {
+        flex: 1,
+        color: '#f5f5f5',
+        width: '100%',
+        marginBottom: 50,
+    },
     text: {
         color: "#f5f5f5",
-    }
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        top: -10,
+        resizeMode: 'contain',
+        height: 200,
+    },
 });
