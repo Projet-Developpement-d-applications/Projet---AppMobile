@@ -90,6 +90,7 @@
         "match": "Match",
         "vote": "Vote",
         "resultat": "Résultat",
+        "choix": "Choisissez votre langue",
 
         "ajoutEquipe": {
             "h2": "Créer une équipe",
@@ -352,6 +353,7 @@
         "match": "Game",
         "vote": "Bet",
         "resultat": "Result",
+        "choix": "Choose your language",
 
         "ajoutEquipe": {
             "h2": "Create a team",
