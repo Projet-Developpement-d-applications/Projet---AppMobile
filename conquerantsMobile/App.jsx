@@ -1,72 +1,77 @@
+import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
-import Axios from 'axios';
-import { Cookies } from '@react-native-cookies/cookies';
-
-import Navbar from './src/components/Navbar';
-import Accueil from './src/screens/Accueil';
-import Equipes from './src/screens/Equipes';
-{/*import Joueurs from './screens/Joueurs';
-import Matchs from './screens/Matchs';
-import Profil from './screens/Profil';
-import Connexion from './screens/Connexion';
-import Inscription from './screens/Inscription';
-import Predictions from './screens/Predictions';
-import ModifEquipes from './screens/ModifEquipes';
-import ModifJoueurs from './screens/ModifJoueurs';
-import ModifMatchs from './screens/ModifMatchs';
-import AjoutEquipes from './screens/AjoutEquipes';
-import AjoutJoueurs from './screens/AjoutJoueurs';
-import AjoutMatchs from './screens/AjoutMatchs';
-import Joueur from './screens/Joueur';
-import Erreur from './screens/Erreur';
-import AjoutPartie from './screens/AjoutPartie';
-import AjoutModifEquipe from './screens/AjoutModifEquipe';
-import AjoutModifJoueur from './screens/AjoutModifJoueur';
-import AjoutModifMatch from './screens/AjoutModifMatch';*/}
-import Loading from './src/components/Loading';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { Image, View, StyleSheet, Text, StatusBar } from 'react-native';
+import DashboardScreen from './screens/DashboardScreen';
+import Accueil from './screens/Accueil';
 import lang from './json/lang.json';
+import Axios from 'axios';
+import CookieManager from '@react-native-cookies/cookies';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faGamepad } from '@fortawesome/free-solid-svg-icons';
+import { faPerson } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faDice } from '@fortawesome/free-solid-svg-icons';
+import { faRectangleList } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const queryClient = new QueryClient();
 
-function App() {
-  const [connecter, setConnecter] = useState(false);
+export default function App() {
+  const [langue, setLangue] = useState(lang.fr);
+  const [connecter, setConnecter] = useState(true);
   const [admin, setAdmin] = useState(false);
   const [saison, setSaison] = useState("");
   const [saisons, setSaisons] = useState([]);
-  const [langue, setLangue] = useState(lang.fr);
   const [pseudoUser, setPseudoUser] = useState("");
   const [pendingConnexion, setPendingConnexion] = useState(true);
 
-  const creerCookieLangue = async (langue) => {
-    const cookie = `langue=${langue}`;
-    await Cookies.set('langue', cookie);
-  };
+  useEffect(() => {
+    // Simulate user authentication after 5 seconds
+    const simulateAuthentication = () => {
+      setTimeout(() => {
+        setConnecter(true);
+      }, 5000); // 5000 milliseconds = 5 seconds
+    };
   
+    // Call the function to simulate authentication
+    simulateAuthentication();
+  }, []);
 
-  const handleLangue = async (langue) => {
+  const creerCookieLangue = async () => {
+    try {
+      await CookieManager.set('http://localhost', {
+        name: 'langue',
+        value: langue.type,
+        expires: '365'});
+    } catch (error) {
+      console.error('Error setting language in cookies:', error);
+    }
+  }
+
+  const handleLangue = (langue) => {
     if (langue === "fr") {
       setLangue(lang.fr);
     } else {
       setLangue(lang.en);
     }
 
-    await creerCookieLangue(langue);
-  };
+    creerCookieLangue(langue);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const [saisonsResponse] = await Promise.all([
-                Axios.get('https://conquerants.azurewebsites.net/noAuth/saisons')
-            ]);
-            setSaisons(saisonsResponse.data);
-            setSaison(saisonsResponse.data[saisonsResponse.data.length - 1]);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+      try {
+        const saisonsResponse = await Axios.get('https://conquerants.azurewebsites.net/noAuth/saisons');
+        setSaisons(saisonsResponse.data);
+        setSaison(saisonsResponse.data[saisonsResponse.data.length - 1]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
 
     fetchData();
@@ -74,100 +79,58 @@ function App() {
 
   useEffect(() => {
     const valideInfoConnexion = async () => {
-      await Axios.get("https://conquerants.azurewebsites.net/connexionStatus", 
-        { withCredentials: true }
-        ).then((response) => {
-          if (response.data === true) {
-            setConnecter(true);
-            refreshConnexion().then(setPendingConnexion(false));
-          } else {
-            setConnecter(false);
-            handleDeconnexion().then(setPendingConnexion(false));
-          }
-      }).catch(error => {
-        const errorMessage = error.response ? error.response.data.message : 'An unexpected error occurred.';
+      try {
+        const response = await Axios.get("https://conquerants.azurewebsites.net/connexionStatus", { withCredentials: true });
+        if (response.data === true) {
+          setConnecter(true);
+          refreshConnexion().then(() => setPendingConnexion(false));
+        } else {
+          setConnecter(false);
+          handleDeconnexion().then(() => setPendingConnexion(false));
+        }
+      } catch (error) {
+        console.error('An unexpected error occurred:', error);
         setConnecter(false);
         setPendingConnexion(false);
-        return false;
-      });
-    };
+      }
+    }
 
     const getCookieLangue = async () => {
-      const cookie = await Cookies.get('langue');
-      if (cookie) {
-        const langueTemp = cookie.langue;
-        handleLangue(langueTemp);
+      try {
+        const langueTemp = await CookieManager.get('http://localhost');
+        if (langueTemp) {
+          handleLangue(langueTemp.langue.value);
+        }
+      } catch (error) {
+        console.error('Error getting language from cookies:', error);
       }
-    }; 
+    }
 
     if (pendingConnexion) {
       valideInfoConnexion();
       getCookieLangue();
     }
-  });
+  }, [pendingConnexion]);
 
   const handleConnexion = async (pseudo, mdp, setter) => {
-    await Axios.post("https://conquerants.azurewebsites.net/connexion", 
-      { pseudo: pseudo, mot_passe: encrypt(mdp)},
-      { withCredentials: true }
-      ).then((response) => {
+    try {
+      const response = await Axios.post("https://conquerants.azurewebsites.net/connexion", { pseudo: pseudo, mot_passe: encrypt(mdp) }, { withCredentials: true });
       if (response.data) {
         const { role, pseudo } = response.data;
-
         setConnecter(true);
         setAdmin(role === "ADMIN");
         setPseudoUser(pseudo);
       }
       setter("");
-    }).catch(error => {
+    } catch (error) {
       const errorMsg = error.response ? error.response.data.message : 'An unexpected error occurred.';
       setter(errorMsg);
-    });
-  };
-
-  const handleInscription = async (prenom, nom, pseudo, mdp, setter) => {
-    await Axios.post("https://conquerants.azurewebsites.net/inscription", {
-      prenom: prenom,
-      nom: nom,
-      pseudo: pseudo,
-      mot_passe: encrypt(mdp),
-    },
-    { withCredentials: true }
-    ).then((response) => {
-      if (response.data) {
-        const { role, pseudo } = response.data;
-
-        setConnecter(true);
-        setAdmin(role === "ADMIN");
-        setPseudoUser(pseudo);
-        setter("");
-      }
-    }).catch(error => {
-      const errorMsg = error.response ? error.response.data.message : 'An unexpected error occurred.';
-      setter(errorMsg);
-    });
-  };
-
-  const refreshConnexion = async () => {
-    await Axios.get("https://conquerants.azurewebsites.net/refreshConnexion", 
-      { withCredentials: true }
-    ).then((response) => {
-      if (response.data) {
-        const { role, pseudo } = response.data;
-
-        setConnecter(true);
-        setAdmin(role === "ADMIN"); 
-        setPseudoUser(pseudo);
-      }
-    }).catch(error => {
-      const errorMessage = error.response ? error.response.data.message : 'An unexpected error occurred.';
-      console.error(errorMessage);
-    });
-  };
+    }
+  }
 
   const handleDeconnexion = async () => {
     await Axios.get('https://conquerants.azurewebsites.net/deconnexion',
-    { withCredentials: true }
+    {withCredentials: true}
     ).then(response => {
         setConnecter(false);
         setAdmin(false);
@@ -176,47 +139,106 @@ function App() {
     .catch(error => {
         console.error('Error invalidating cookie:', error);
     });
-  };
+  }
 
   if (pendingConnexion) {
-    return <View style={styles.container}><Loading/></View>;
+    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text>Loading...</Text></View>
   }
 
   return (
+    <QueryClientProvider client={queryClient}>
     <NavigationContainer>
-      <View style={styles.container}>
-        <Navbar langue={langue} langues={lang.langues} connecter={connecter} admin={admin} handleLangue={handleLangue}/>
-        <Stack.Navigator>
-          <Stack.Screen name="Accueil" component={Accueil} initialParams={{ langue }} />
-          <Stack.Screen name="Equipes" component={Equipes} initialParams={{ langue, setSaison, saison }} />
-          {/*<Stack.Screen name="Joueurs" component={Joueurs} initialParams={{ saisonFiltre: saison, setSaisonFiltre: setSaison, saisons, langue }} />
-          <Stack.Screen name="Joueur" component={Joueur} initialParams={{ langue, langueStat: lang.fr }} />
-          <Stack.Screen name="Matchs" component={Matchs} initialParams={{ saisonFiltre: saison, setSaisonFiltre: setSaison, saisons, langue }} />
-          <Stack.Screen name="Predictions" component={Predictions} initialParams={{ langue, saisonFiltre: saison, setSaisonFiltre: setSaison, saisons }} />
-          <Stack.Screen name="Connexion" component={Connexion} initialParams={{ langue, handleConnexion }} />
-          <Stack.Screen name="Inscription" component={Inscription} initialParams={{ langue, handleInscription }} />
-          <Stack.Screen name="Profil" component={Profil} initialParams={{ langue, handleDeconnexion, pseudo: pseudoUser }} />
-          <Stack.Screen name="AjoutEquipes" component={AjoutEquipes} initialParams={{ langue }} />
-          <Stack.Screen name="ModifEquipes" component={ModifEquipes} initialParams={{ langue }} />
-          <Stack.Screen name="AjoutModifEquipe" component={AjoutModifEquipe} initialParams={{ langue }} />
-          <Stack.Screen name="AjoutJoueurs" component={AjoutJoueurs} initialParams={{ langue }} />
-          <Stack.Screen name="ModifJoueurs" component={ModifJoueurs} initialParams={{ langue }} />
-          <Stack.Screen name="AjoutModifJoueur" component={AjoutModifJoueur} initialParams={{ langue }} />
-          <Stack.Screen name="AjoutMatchs" component={AjoutMatchs} initialParams={{ langue }} />
-          <Stack.Screen name="ModifMatchs" component={ModifMatchs} initialParams={{ langue }} />
-          <Stack.Screen name="AjoutModifMatch" component={AjoutModifMatch} initialParams={{ langue }} />
-          <Stack.Screen name="AjoutPartie" component={AjoutPartie} initialParams={{ langue, langueStat: lang.fr }} />
-          <Stack.Screen name="Erreur" component={Erreur} initialParams={{ langue }} />*/}
-        </Stack.Navigator>
-      </View>
+        <Drawer.Navigator
+        drawerContent={props => <CustomDrawerContent {...props} />}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#6e171d'
+          },
+          headerTintColor: '#f5f5f5',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          drawerStyle: {
+            backgroundColor: '#101010',
+          },
+          drawerActiveTintColor: '#d3333e',
+          drawerInactiveTintColor: '#f5f5f5',
+        }}
+      >
+          <Drawer.Screen name={langue.navbar.accueil} component={Accueil} initialParams={{langue: langue}} options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesomeIcon icon={faHome} size={20} color={color} />
+          )}}/>
+          <Drawer.Screen name={langue.navbar.valo} component={DashboardScreen} options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
+          )}}/>
+          <Drawer.Screen name={langue.navbar.lol} component={DashboardScreen} options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
+          )}}/>
+          <Drawer.Screen name={langue.navbar.rl} component={DashboardScreen} options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
+          )}}/>
+          <Drawer.Screen name={langue.navbar.joueurs} component={DashboardScreen} options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesomeIcon icon={faPerson} size={20} color={color} />
+          )}}/>
+          <Drawer.Screen name={langue.navbar.matchs} component={DashboardScreen} options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesomeIcon icon={faRectangleList} size={20} color={color} />
+          )}}/>
+          {connecter ? 
+          <>
+            <Drawer.Screen name={langue.navbar.predictions} component={DashboardScreen} options={{
+              drawerIcon: ({ color }) => (
+                <FontAwesomeIcon icon={faDice} size={20} color={color} />
+            )}}/>
+            <Drawer.Screen name={langue.navbar.settings} component={DashboardScreen} options={{
+              drawerIcon: ({ color }) => (
+                <FontAwesomeIcon icon={faGear} size={20} color={color} />
+            )}}/>
+          </> :
+          <>
+            <Drawer.Screen name={langue.navbar.connexion} component={DashboardScreen} options={{
+              drawerIcon: ({ color }) => (
+                <FontAwesomeIcon icon={faUser} size={20} color={color} />
+            )}}/>
+            <Drawer.Screen name={langue.navbar.settings} component={DashboardScreen} options={{
+              drawerIcon: ({ color }) => (
+                <FontAwesomeIcon icon={faGear} size={20} color={color} />
+            )}}/>
+          </>}
+        </Drawer.Navigator>
     </NavigationContainer>
+    </QueryClientProvider>
+  )
+}
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('./images/banniere.png')} // Replace with your image path
+          style={styles.image}
+        />
+      </View>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 290,
+    height: 150,
+    resizeMode: 'contain',
   },
 });
-
-export default App;

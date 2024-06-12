@@ -72,6 +72,7 @@
             "description": "Rocket League est un jeu vidéo développé et édité par Psyonix. Rocket League est un mélange de jeux de courses et de jeux de football. Par équipe ou en solo, le joueur contrôle un véhicule et peut alors frapper dans un ballon, avec pour objectif de marquer dans le but adverse."
         },
 
+        "type": "fr",
         "victoire": "Victoire/Défaite",
         "saison": "Saison",
         "division": "Division",
@@ -225,15 +226,16 @@
         },
 
         "navbar": {
+            "accueil": "ACCUEIL",
             "joueurs": "JOUEURS",
             "matchs": "MATCHS",
             "equipes": "ÉQUIPES",
             "predictions": "PRÉDICTIONS",
-            "equipe": "AJOUTER/MODIFIER UNE ÉQUIPE",
-            "joueur": "AJOUTER/MODIFIER UN JOUEUR",
-            "match": "AJOUTER/MODIFIER UN MATCH",
-            "partie": "AJOUTER UNE PARTIE",
-            "admin": "ADMINISTRATION"
+            "valo": "VALORANT",
+            "lol": "LEAGUE OF LEGENDS",
+            "rl": "ROCKET LEAGUE",
+            "connexion": "CONNEXION",
+            "settings": "PARAMÈTRES"
         },
 
         "predictions": {
@@ -332,6 +334,7 @@
             "description": "Rocket League is a vehicular soccer video game developed and published by Psyonix. Rocket League is a mix between a racing and a football game. Rocket League has up to eight players assigned to each of the two teams, using rocket-powered vehicles to hit a ball into their opponent's goal and score points over the course of a match."
         },
 
+        "type": "en",
         "victoire": "Win/Lose",
         "saison": "Season",
         "division": "Division",
@@ -485,15 +488,16 @@
         },
 
         "navbar": {
+            "accueil": "HOME",
             "joueurs": "PLAYERS",
             "matchs": "MATCHES",
             "equipes": "TEAMS",
             "predictions": "BETS",
-            "equipe": "CREATE/MODIFY A TEAM",
-            "joueur": "CREATE/MODIFY A PLAYER",
-            "match": "CREATE/MODIFY A MATCH",
-            "partie": "CREATE A GAME",
-            "admin": "ADMIN"
+            "valo": "VALORANT",
+            "lol": "LEAGUE OF LEGENDS",
+            "rl": "ROCKET LEAGUE",
+            "connexion": "LOGIN",
+            "settings": "SETTINGS"
         },
 
         "predictions": {
