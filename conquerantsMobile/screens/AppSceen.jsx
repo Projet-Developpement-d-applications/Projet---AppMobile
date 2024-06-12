@@ -19,6 +19,7 @@ import Settings from '../screens/Settings';
 import { useLangue } from '../Context/LangueContext';
 import { useAuth } from '../Context/AuthContext';
 import Connexion from '../screens/Connexion';
+import Inscription from './Inscription';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -104,7 +105,7 @@ export default function App() {
               drawerIcon: ({ color }) => (
                 <FontAwesomeIcon icon={faUser} size={20} color={color} />
             )}}/>
-            <Drawer.Screen name={langue.navbar.inscription} component={DashboardScreen} options={{
+            <Drawer.Screen name={langue.navbar.inscription} component={Inscription} options={{
               drawerIcon: ({ color }) => (
                 <FontAwesomeIcon icon={faUser} size={20} color={color} />
             )}}/>
