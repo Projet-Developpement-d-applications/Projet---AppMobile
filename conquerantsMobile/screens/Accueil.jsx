@@ -62,7 +62,7 @@ function Accueil() {
     }
     
     if (isError1 || isError2 || isError3) {
-        //return <Erreur/>
+        return <Erreur/>
     }
 
     return (

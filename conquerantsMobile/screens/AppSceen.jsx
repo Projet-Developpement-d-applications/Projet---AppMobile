@@ -20,6 +20,7 @@ import { useLangue } from '../Context/LangueContext';
 import { useAuth } from '../Context/AuthContext';
 import Connexion from '../screens/Connexion';
 import Inscription from './Inscription';
+import Predictions from './Predictions';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -27,22 +28,6 @@ const queryClient = new QueryClient();
 export default function App() {
   const { langue } = useLangue();
   const { connecter } = useAuth();
-  const [saison, setSaison] = useState("");
-  const [saisons, setSaisons] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const saisonsResponse = await Axios.get('https://conquerants.azurewebsites.net/noAuth/saisons');
-        setSaisons(saisonsResponse.data);
-        setSaison(saisonsResponse.data[saisonsResponse.data.length - 1]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -91,7 +76,7 @@ export default function App() {
           )}}/>
           {connecter ? 
           <>
-            <Drawer.Screen name={langue.navbar.predictions} component={DashboardScreen} options={{
+            <Drawer.Screen name={langue.navbar.predictions} component={Predictions} options={{
               drawerIcon: ({ color }) => (
                 <FontAwesomeIcon icon={faDice} size={20} color={color} />
             )}}/>
@@ -125,7 +110,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <View style={styles.imageContainer}>
         <Image
-          source={require('../images/banniere.png')} // Replace with your image path
+          source={require('../images/banniere.png')}
           style={styles.image}
         />
       </View>
