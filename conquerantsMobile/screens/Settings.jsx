@@ -1,11 +1,12 @@
 import React, { useState, useEffect} from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Loading from '../components/Loading';
 import { useLangue } from '../Context/LangueContext';
 import { useAuth } from '../Context/AuthContext';
 import { encrypt } from '../components/Encryption';
 import { valideMdp } from '../components/Validation';
+import Axios from 'axios';
 
 const Settings = () => {
     const { langue, handleLangue } = useLangue();
@@ -24,7 +25,7 @@ const Settings = () => {
     const [modification, setModification] = useState(false);
     const [utilisateur, setUtilisateur] = useState({ pseudo: '', role: '' });
     const [pendingDeconnexion, setPendingDeconnexion] = useState(false);
-    const [loading, setLoading] = useState(connecter);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchUtilisateur = async () => {
@@ -57,7 +58,8 @@ const Settings = () => {
     };
 
     const sauvegarderModification = () => {
-        if (valideMdp(mdpTemp, setMdpTempErreur, langue) && valideMdp(nouveauMdp, setNouveauMdpErreur, langue) && valideNomPrenom(prenom, setPrenomErreur, langue) && valideNomPrenom(nom, setNomErreur, langue)) {
+        if (valideMdp(mdpTemp, setMdpTempErreur, langue) & valideMdp(nouveauMdp, setNouveauMdpErreur, langue)) {
+            setLoading(true);
             Axios.put(
                 'https://conquerants.azurewebsites.net/modifierUtilisateur',
                 { ancien_mdp: encrypt(mdpTemp), nouveau_mdp: encrypt(nouveauMdp) },
@@ -71,14 +73,15 @@ const Settings = () => {
                             setModifStatus('');
                         }, 2000);
                         stopModification();
+                        setLoading(false);
                     }
                 })
                 .catch((error) => {
                     const errorMessage = error.response ? error.response.data : 'An unexpected error occurred.';
                     setModifStatus(errorMessage);
                     setModifErreur(true);
-                    console.error('Error updating user info:', errorMessage);
                     stopModification();
+                    setLoading(false);
                 });
         }
     };
@@ -113,6 +116,7 @@ const Settings = () => {
     }
 
     return (
+        <ScrollView style={{backgroundColor: '#111'}} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
             <View style={styles.pickerContainer}>
                 <Text style={styles.text}>{langue.choix}</Text>
@@ -123,16 +127,16 @@ const Settings = () => {
                         style={styles.picker}
                         dropdownIconColor='#fff'
                     >
-                        <Picker.Item label="Français" value="fr" />
+                        <Picker.Item label="Français" value='fr' />
                         <Picker.Item label="English" value="en" />
                     </Picker>
                 </View>
             </View>
             {connecter &&
                 <View style={styles.profilContainer}>
+                <Text style={styles.profilTitle}>{langue.profil.h1}</Text>
                 <Text style={styles.statusMessage}>{modifStatus}</Text>
-                <Text>{langue.prenom}</Text>
-                <Text style={styles.errorText}>{prenomErreur}</Text>
+                <Text style={styles.profilLabel}>{langue.prenom}</Text>
                 <TextInput
                     style={styles.input}
                     value={prenom}
@@ -140,8 +144,7 @@ const Settings = () => {
                     editable={false}
                 />
 
-                <Text>{langue.nom}</Text>
-                <Text style={styles.errorText}>{nomErreur}</Text>
+                <Text style={styles.profilLabel}>{langue.nom}</Text>
                 <TextInput
                     style={styles.input}
                     value={nom}
@@ -149,7 +152,7 @@ const Settings = () => {
                     editable={false}
                 />
 
-                <Text>{langue.pseudo}</Text>
+                <Text style={styles.profilLabel}>{langue.pseudo}</Text>
                 <TextInput
                     style={styles.input}
                     value={utilisateur.pseudo}
@@ -157,40 +160,48 @@ const Settings = () => {
                 />
 
                 {!modification && (
-                    <Button style={styles.button} onPress={() => setModification(true)} title={langue.profil.modif} />
+                    <View style={styles.space}>
+                        <Button color="#d3333e" style={styles.button} onPress={() => setModification(true)} title={langue.profil.modif} />
+                    </View>
                 )}
 
                 {modification && (
                     <View style={styles.modifProfil}>
-                        <Text>{langue.profil.actuel}</Text>
-                        <Text style={styles.errorText}>{mdpTempErreur}</Text>
+                        <Text style={styles.profilLabel}>{langue.profil.actuel}</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.inputMdp}
                             secureTextEntry
                             value={mdpTemp}
                             onChangeText={(text) => handleMdp(text, setMdpTemp, setMdpTempErreur)}
                             editable={modification}
                         />
-                        <Text>{langue.profil.nouveau}</Text>
-                        <Text style={styles.errorText}>{nouveauMdpErreur}</Text>
+                        {mdpTempErreur && <Text style={styles.errorText}>{mdpTempErreur}</Text>}
+
+                        <Text style={styles.profilLabel}>{langue.profil.nouveau}</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.inputMdp}
                             secureTextEntry
                             onChangeText={(text) => handleMdp(text, setNouveauMdp, setNouveauMdpErreur)}
                             value={nouveauMdp}
                             editable={modification}
                         />
-
-                        <Button style={styles.button} onPress={() => stopModification()} title={langue.profil.annuler} />
-                        <Button style={styles.button} onPress={() => sauvegarderModification()} title={langue.profil.save} />
+                        {nouveauMdpErreur && <Text style={styles.errorText}>{nouveauMdpErreur}</Text>}
+                        <View style={styles.space}>
+                            <Button color="#d3333e" style={styles.button} onPress={() => stopModification()} title={langue.profil.annuler} />
+                        </View>
+                        <View style={styles.space}>
+                            <Button color="#d3333e" style={styles.button} onPress={() => sauvegarderModification()} title={langue.profil.save} />
+                        </View>
                     </View>
                 )}
-
-                <Button style={styles.button} onPress={logout} title={langue.profil.deconnexion} />
-                {pendingDeconnexion && <Loading customClassName="loadingAuth" />}
+                <View style={styles.space}>
+                    <Button style={styles.button} color="#d3333e" onPress={logout} title={langue.profil.deconnexion} />
+                </View>
+                {(pendingDeconnexion || loading) && <Loading customClassName="loadingAuth" />}
             </View>
             }
         </View>
+        </ScrollView>
     )
 }
 
@@ -226,27 +237,47 @@ const styles = StyleSheet.create({
         marginBottom: 0,
     },
     profilContainer: {
-        width: '100%',
+        width: '80%',
+        marginTop: '5%',
+        marginBottom: '10%',
+    },
+    profilTitle: {
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    profilLabel: {
+        color: '#FFF',
     },
     statusMessage: {
         color: 'red',
-        marginBottom: 10,
+        textAlign: 'center',
     },
     errorText: {
         color: 'red',
+        textAlign: 'center',
     },
     input: {
         height: 40,
-        borderColor: '#ccc',
         borderWidth: 1,
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        marginBottom: 10,
+        borderColor: '#FFF',
+        backgroundColor: '#101010',
+        color: '#f5f5f5',
+        padding: 10,
     },
-    modifProfil: {
-        marginBottom: 20,
+    inputMdp: {
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#d3333e',
+        backgroundColor: '#101010',
+        color: '#f5f5f5',
+        padding: 10,
     },
     button: {
+        marginTop: 10,
+    },
+    space: {
         marginTop: 10,
     },
 });

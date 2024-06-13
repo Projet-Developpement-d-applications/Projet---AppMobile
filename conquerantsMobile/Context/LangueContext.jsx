@@ -8,17 +8,17 @@ export const LangueProvider = ({ children }) => {
   const [langue, setLangue] = useState(lang.fr);
 
   const handleLangue = async (langueType) => {
-    const newLangue = langueType === 'fr' ? lang.fr : lang.en;
+    const newLangue = langueType === lang.fr.type ? lang.fr : lang.en;
     setLangue(newLangue);
     await creerCookieLangue(langueType);
   };
 
-  const creerCookieLangue = async () => {
+  const creerCookieLangue = async (langueType) => {
     try {
       await CookieManager.set('http://localhost', {
         name: 'langue',
-        value: langue.type,
-        expires: '365'});
+        value: langueType,
+        expires: 'never'});
     } catch (error) {
       console.error('Error setting language in cookies:', error);
     }
@@ -27,8 +27,10 @@ export const LangueProvider = ({ children }) => {
   const getCookieLangue = async () => {
     try {
       const langueTemp = await CookieManager.get('http://localhost');
-      if (langueTemp.langue) {
-        handleLangue(langueTemp.langue.value);
+      if (langueTemp) {
+        handleLangue(langueTemp.langue.value.toString());
+      } else {
+        handleLangue('fr');
       }
     } catch (error) {
       console.error('Error getting language from cookies:', error);

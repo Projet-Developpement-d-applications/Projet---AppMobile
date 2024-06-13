@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }) => {
     }
     
     const refreshConnexion = async () => {
-      console.log("refresh");
         await Axios.get("https://conquerants.azurewebsites.net/refreshConnexion",
           { withCredentials: true }
         ).then((response) => {
