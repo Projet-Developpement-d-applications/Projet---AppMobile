@@ -21,6 +21,7 @@ import { useAuth } from '../Context/AuthContext';
 import Connexion from '../screens/Connexion';
 import Inscription from './Inscription';
 import Predictions from './Predictions';
+import Matchs from './Matchs';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -70,7 +71,7 @@ export default function App() {
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faPerson} size={20} color={color} />
           )}}/>
-          <Drawer.Screen name={langue.navbar.matchs} component={DashboardScreen} options={{
+          <Drawer.Screen name={langue.navbar.matchs} component={Matchs} options={{
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faRectangleList} size={20} color={color} />
           )}}/>
