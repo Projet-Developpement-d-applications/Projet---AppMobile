@@ -1,11 +1,10 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { Image, View, StyleSheet, Text, StatusBar } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 import DashboardScreen from '../screens/DashboardScreen';
 import Accueil from '../screens/Accueil';
-import Axios from 'axios';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +21,7 @@ import Connexion from '../screens/Connexion';
 import Inscription from './Inscription';
 import Predictions from './Predictions';
 import Matchs from './Matchs';
+import Equipe from './Equipe';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -55,15 +55,15 @@ export default function App() {
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faHome} size={20} color={color} />
           )}}/>
-          <Drawer.Screen name={langue.navbar.valo} component={DashboardScreen} options={{
+          <Drawer.Screen name={langue.navbar.valo} component={Equipe} initialParams={{jeu: langue.navbar.valo}} options={{
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
           )}}/>
-          <Drawer.Screen name={langue.navbar.lol} component={DashboardScreen} options={{
+          <Drawer.Screen name={langue.navbar.lol} component={Equipe} initialParams={{jeu: langue.navbar.lol}} options={{
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
           )}}/>
-          <Drawer.Screen name={langue.navbar.rl} component={DashboardScreen} options={{
+          <Drawer.Screen name={langue.navbar.rl} component={Equipe} initialParams={{jeu: langue.navbar.rl}} options={{
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
           )}}/>

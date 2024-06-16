@@ -27,7 +27,7 @@ export const LangueProvider = ({ children }) => {
   const getCookieLangue = async () => {
     try {
       const langueTemp = await CookieManager.get('http://localhost');
-      if (langueTemp) {
+      if (langueTemp.langue) {
         handleLangue(langueTemp.langue.value.toString());
       } else {
         handleLangue('fr');
