@@ -163,7 +163,8 @@
             "jeux": "Tous les jeux",
             "recherche": "Recherchez un joueur",
             "aucune": "Aucune statistique à afficher pour le moment.",
-            "moyenne": "MOYENNE"
+            "moyenne": "MOYENNE",
+            "statsMoyenne": "STATS MOYENNES"
         },
 
         "matchs": {
@@ -426,8 +427,9 @@
             "aucun": "No player chosen.",
             "jeux": "All games",
             "recherche": "Search a player",
-            "aucune": "There is not stats to display for the moment.",
-            "moyenne": "AVERAGE"
+            "aucune": "There is no stats to display for the moment.",
+            "moyenne": "AVERAGE",
+            "statsMoyenne": "AVERAGE STATS"
         },
 
         "matchs": {
