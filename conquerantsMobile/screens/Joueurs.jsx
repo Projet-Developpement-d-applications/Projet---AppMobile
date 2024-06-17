@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Axios from 'axios';
 import Loading from '../components/Loading';
@@ -8,6 +8,9 @@ import { useLangue } from '../Context/LangueContext';
 import { useSaison } from '../Context/SaisonContext';
 import { useEquipe } from '../Context/EquipeContext';
 import { useJeu } from '../Context/JeuContext';
+import JoueurImage from '../images/joueur.jpg';
+import { ScrollView } from 'react-native-gesture-handler';
+import { getImage } from '../components/JoueurImage';
 
 function Joueurs() {
     const { langue } = useLangue();
@@ -18,6 +21,7 @@ function Joueurs() {
     const [joueurs, setJoueurs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [erreur, setErreur] = useState(false);
+    const [image, setImage] = useState();
 
     const [equipeFiltre, setEquipeFiltre] = useState({ nom: "" });
     const [jeuFiltre, setJeuFiltre] = useState({ nom: "" });
@@ -42,6 +46,29 @@ function Joueurs() {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const getImageJoueur = () => {
+            try {
+                const promise = getImage(joueurFiltre.saison.debut, joueurFiltre.jeu, joueurFiltre.pseudo)
+                .then(imgTemp => {
+                    if (imgTemp) {
+                        setImage(imgTemp);
+                    } else {
+                        setImage("");
+                    }
+                }).catch(error => {
+                    console.error(`Error fetching image for joueur ${joueurFiltre.pseudo}:`, error);
+                });
+            } catch (error) {
+                console.error(`Error fetching image for joueur ${joueurFiltre.pseudo}:`, error);
+            };
+        }
+
+        if (joueurFiltre.nom !== "") {
+            getImageJoueur();
+        }
+    }, [joueurFiltre])
 
     if (loading) {
         return <Loading />;
@@ -75,38 +102,27 @@ function Joueurs() {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             <View style={styles.rechercheContainer}>
                 <Text style={styles.titreJoueur}>{langue.joueurs.h1}</Text>
                 <Selection langue={langue} saisons={saisons} setSaison={handleSaison} saison={saison} jeux={jeux} jeuFiltre={jeuFiltre} equipeFiltre={equipeFiltre} setJeu={setJeuFiltre} 
                 equipes={equipes} setEquipe={setEquipeFiltre} joueurs={filtrerJoueurs} setJoueur={setJoueurFiltre} joueur={joueurFiltre} saisonMatch={saisonMatch} equipeMatch={equipeMatch} jeuMatch={jeuMatch} />
             </View>
-            {/*<FlatList
-                data={filtrerJoueurs()}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                    <View style={styles.row}>
-                        <Text>{item.prenom}</Text>
-                        <Text>{item.nom}</Text>
-                        <Text>{item.pseudo}</Text>
-                        <Text>{item.jeu}</Text>
+            {joueurFiltre.nom !== "" &&
+            <View>
+                <View style={styles.joueurInfo}>
+                    {image ? 
+                    <Image style={styles.joueurImage} source={{uri: image}} /> :
+                    <Image style={styles.joueurImage} source={JoueurImage} />}
+                    <View style={styles.joueurTexte}>
+                        <Text style={styles.joueurPseudo}>{joueurFiltre.pseudo}</Text>
+                        <Text style={styles.joueurAutreTexte}>{joueurFiltre.prenom + " " + joueurFiltre.nom}</Text>
+                        <Text style={styles.joueurAutreTexte}>{joueurFiltre.equipe.nom}</Text>
+                        <Text style={styles.joueurAutreTexte}>{joueurFiltre.position}</Text>
                     </View>
-                )}
-                ListEmptyComponent={() => (
-                    <View style={styles.emptyContainer}>
-                        <Text style={{color: '#fff'}}>{langue.joueurs.aucun}</Text>
-                    </View>
-                )}
-                ListHeaderComponent={() => (
-                    <View style={styles.header}>
-                        <Text>{langue.prenom}</Text>
-                        <Text>{langue.nom}</Text>
-                        <Text>{langue.pseudo}</Text>
-                        <Text>{langue.jeu}</Text>
-                    </View>
-                )}
-            />*/}
-        </View>
+                </View>
+            </View>}
+        </ScrollView>
     );
 }
 
@@ -119,6 +135,7 @@ function Selection({ saisons, setSaison, saison, jeux, jeuFiltre, setJeu, equipe
             jeuTemp = JSON.parse(value);
         }
 
+        setJoueur({ nom: "" });
         setter(jeuTemp);
     }
 
@@ -228,6 +245,36 @@ const styles = StyleSheet.create({
     emptyContainer: {
         padding: 20,
         alignItems: 'center',
+    },
+    joueurImage: {
+        width: '40%',
+        height: 200,
+        borderRadius: 10,
+        resizeMode: 'cover',
+    },
+    joueurInfo: {
+        width: '100%',
+        flexDirection: 'row',
+        backgroundColor: '#000',
+        borderRadius: 15,
+    },
+    joueurTexte: {
+        padding: 20,
+        justifyContent: 'center',
+    },
+    joueurPseudo: {
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    joueurAutreTexte: {
+        color: '#fff',
+        fontSize: 14,
+        marginBottom: 5,
+    },
+    joueurNom: {
+        marginBottom: 0,
     },
 });
 
