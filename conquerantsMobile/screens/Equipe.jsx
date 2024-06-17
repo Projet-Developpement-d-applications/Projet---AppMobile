@@ -207,7 +207,8 @@ const styles = StyleSheet.create({
     },
     joueursContent: {
         paddingVertical: 10,
-        marginLeft: 55,
+        paddingLeft: 55,
+        paddingRight: 55,
     },
     joueurCarte: {
         height: 300,
