@@ -154,7 +154,7 @@ function Selection({ saisons, setSaison, saison, jeux, jeuFiltre, setJeu, equipe
     const handleChange = (value, setter) => {
         var jeuTemp = { nom: "" };
 
-        if (value !== "") {
+        if (value.nom !== "") {
             jeuTemp = JSON.parse(value);
         }
 
@@ -177,7 +177,7 @@ function Selection({ saisons, setSaison, saison, jeux, jeuFiltre, setJeu, equipe
                 style={styles.picker}
                 onValueChange={(itemValue) => handleChange(itemValue, setJeu)}
             >
-                <Picker.Item label={langue.matchs.jeux} value="" />
+                <Picker.Item label={langue.matchs.jeux} value={{ nom: "" }} />
                 {jeux.map((jeu, index) => (
                     <Picker.Item key={index} label={jeu.nom} value={JSON.stringify(jeu)} />
                 ))}
@@ -187,7 +187,7 @@ function Selection({ saisons, setSaison, saison, jeux, jeuFiltre, setJeu, equipe
                 style={styles.picker}
                 onValueChange={(itemValue) => handleChange(itemValue, setEquipe)}
             >
-                <Picker.Item label={langue.matchs.equipes} value="" />
+                <Picker.Item label={langue.matchs.equipes} value={{ nom: "" }} />
                 {equipes.filter((equipe) => {
                     return jeuMatch(equipe) && saisonMatch(equipe);
                 }).map((equipe, index) => (
