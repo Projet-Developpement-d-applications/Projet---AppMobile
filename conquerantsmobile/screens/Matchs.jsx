@@ -12,18 +12,15 @@ function Matchs() {
     const { saison, setSaison, saisons } = useSaison();
     const { langue } = useLangue();
     const { jeux } = useJeu();
-    const { equipes, setEquipes } = useEquipe();
+    const { equipes } = useEquipe();
     const { matchs } = useMatch();
 
     const [loading, setLoading] = useState(true);
     const [erreur, setErreur] = useState(false);
+    const [equipesFiltre, setEquipesFiltre] = useState([]);
 
     const [equipeFiltre, setEquipeFiltre] = useState({ nom: "" });
     const [jeuFiltre, setJeuFiltre] = useState({ nom: "" });
-    const [equipe1Ascendant, setEquipe1Ascendant] = useState(true);
-    const [equipe2Ascendant, setEquipe2Ascendant] = useState(true);
-    const [dateAscendant, setDateAscendant] = useState(true);
-    const [jeuAscendant, setJeuAscendant] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,7 +56,7 @@ function Matchs() {
             return true;
         });
 
-        setEquipes(equipesAvecMatchs);
+        setEquipesFiltre(equipesAvecMatchs);
     }
 
     const jeuMatch = (equipe) => {
@@ -136,7 +133,7 @@ function Matchs() {
         <View style={styles.content}>
             <View style={styles.rechercheContainer}>
                 <Text style={styles.titreJoueur}>{langue.matchs.h1}</Text>
-                <Selection langue={langue} saisons={saisons} setSaison={handleSaison} saison={saison} jeux={jeux} jeuFiltre={jeuFiltre} equipeFiltre={equipeFiltre} setJeu={setJeuFiltre} equipes={equipes}
+                <Selection langue={langue} saisons={saisons} setSaison={handleSaison} saison={saison} jeux={jeux} jeuFiltre={jeuFiltre} equipeFiltre={equipeFiltre} setJeu={setJeuFiltre} equipes={equipesFiltre}
                     setEquipe={setEquipeFiltre} jeuMatch={jeuMatch} saisonMatch={saisonMatch} />
             </View>
             <FlatList

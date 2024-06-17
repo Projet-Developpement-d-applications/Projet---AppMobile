@@ -22,6 +22,7 @@ import Inscription from './Inscription';
 import Predictions from './Predictions';
 import Matchs from './Matchs';
 import Equipe from './Equipe';
+import Joueurs from './Joueurs';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient();
@@ -67,7 +68,7 @@ export default function App() {
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faGamepad} size={20} color={color} />
           )}}/>
-          <Drawer.Screen name={langue.navbar.joueurs} component={DashboardScreen} options={{
+          <Drawer.Screen name={langue.navbar.joueurs} component={Joueurs} options={{
             drawerIcon: ({ color }) => (
               <FontAwesomeIcon icon={faPerson} size={20} color={color} />
           )}}/>

@@ -159,7 +159,7 @@
 
         "joueurs": {
             "h1": "JOUEURS",
-            "aucun": "Aucun joueur à afficher.",
+            "aucun": "Aucun joueur choisi.",
             "jeux": "Tous les jeux",
             "recherche": "Recherchez un joueur",
             "aucune": "Aucune statistique à afficher pour le moment.",
@@ -423,7 +423,7 @@
 
         "joueurs": {
             "h1": "PLAYERS",
-            "aucun": "No player to display.",
+            "aucun": "No player chosen.",
             "jeux": "All games",
             "recherche": "Search a player",
             "aucune": "There is not stats to display for the moment.",

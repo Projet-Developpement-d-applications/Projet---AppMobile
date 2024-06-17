@@ -66,7 +66,7 @@ function Accueil() {
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <View style={styles.app}>
             <MatchCarousel langue={langue} matchs={matchsAVenir} />
             <Image source={require('../images/banniere_blanc.png')} style={styles.backgroundImage}></Image>
@@ -86,6 +86,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#101010",
+    },
+    container: {
+        backgroundColor: '#101010',
     },
     content: {
         flex: 1,
