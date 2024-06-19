@@ -89,6 +89,16 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('conq.keystore')
+            def scanner = new Scanner(System.in)
+            println "\nKeystore password:"
+            storePassword scanner.nextLine()
+            println "\nAlias: "
+            keyAlias scanner.nextLine()
+            println "\nAlias password:"
+            keyPassword scanner.nextLine()
+        }
     }
     buildTypes {
         debug {
