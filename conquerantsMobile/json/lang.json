@@ -270,7 +270,7 @@
             "requis": "Ce champ est requis.",
             "mdp": "Cette valeur ne doit pas être inférieur à 8 caractères, contenant au moins 1 chiffre.",
             "nom": "Vous ne pouvez entrer que des lettres.",
-            "pseudo": "Votre pseudo doit avoir un minimum de 3 caractères.",
+            "pseudo": "Vous devez entrer une adresse mail valide.",
             "pseudo2": "Votre pseudo ne peut contenir que des lettres ou des chiffres."
         }
         
@@ -535,7 +535,7 @@
             "requis": "This field is required.",
             "mdp": "This value must be at least 8 characters long and contain at least 1 digit.",
             "nom": "You can only enter letters.",
-            "pseudo": "Your username must be at least 3 characters long.",
+            "pseudo": "You have to enter a valid email.",
             "pseudo2": "Your username can only contain letters and digits."
         }
     }
